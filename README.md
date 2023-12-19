@@ -3,6 +3,7 @@ New Terminal
 pip3 install Django~=4.2.1
 pip3 freeze --local > requirements.txt
 check requirements asgiref==3.7.2, django==4.2.7, sqlparse==0.4.4
+return to terminal
 django-admin startproject my_project .
 python3 manage.py runserver
 
