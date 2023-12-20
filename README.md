@@ -72,3 +72,30 @@ Important files in our apps folder:
 models.py: our database models are stored here, which define the structure of the database used by our app.
 views.py: this file contains the view code for our app. You’ve already created some view code to display a text response to the user.
 
+Urls:
+When you add a path like this to the urls.py file, we are telling Django that when the user inputs this specific URL, it should run the index function within the views.py linked to this path, e.g.
+path('hello/',  index_views.index, name='index'),
+
+Example of views function:
+def index(request):
+
+   if request.method == "GET":
+       return HttpResponse("This was a GET request")
+   elif request.method == "POST":
+       return HttpResponse("This was a POST request")
+
+Deploy project:
+Click on the Settings tab and reveal the config vars. Add a key of DISABLE_COLLECTSTATIC and a value of 1 and click Add.
+In the terminal:
+pip3 install gunicorn~=20.1 
+Add gunicorn==20.1.0 to the requirements.txt file with:
+pip3 freeze --local > requirements.txt
+Create a file named Procfile at the root directory of the project (same directory as requirements.txt).
+. In the Procfile, declare this is a web process followed by the command to execute your Django project.
+web: gunicorn my_project.wsgi
+Open the my_project/settings.py file and replace DEBUG=True with DEBUG=False.
+ Also, in settings.py we need to append the Heroku hostname to the ALLOWED_HOSTS list, in addition to the local host we added in the last lesson.
+
+,'.herokuapp.com'
+
+You can now git add the files you have modified, git commit them and push them to GitHub.
