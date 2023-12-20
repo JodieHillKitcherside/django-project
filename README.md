@@ -99,3 +99,19 @@ Open the my_project/settings.py file and replace DEBUG=True with DEBUG=False.
 ,'.herokuapp.com'
 
 You can now git add the files you have modified, git commit them and push them to GitHub.
+resourres - dynos
+
+
+Settings.py
+ALLOWED_HOSTS: Determines which host or server names the project can run on.
+SECRET_KEY: Defines an encryption key for leaving a virtual signature.
+INSTALLED_APPS: Provides a list of applications that are enabled for this Django installation.
+DEBUG: Allows for the extended, yellow error messages to be displayed.
+Brief comments are given above DEBUG, SECRET_KEY and INSTALLED_APPS. There are warnings that SECRET_KEY should be kept secret and that DEBUG should be switched off in production. INSTALLED_APPS has the comment of "Application definition".
+
+While developing our application, we should leave DEBUG set to True. 
+When your project is deployed and live, however, DEBUG should always be set to False. 
+
+requirements.txt
+pip3 install whitenoise~=6.5.0
+pip3 freeze --local > requirements.txt
