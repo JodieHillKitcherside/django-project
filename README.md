@@ -28,7 +28,7 @@ above url patterns:
 path('', index_views.index, name='index'),
 
 settings.py
-scroll through my_project/settings.py 
+scroll through my_project/settings.py
 find INSTALLED_APPS
 Append 'hello_world',
 
@@ -43,11 +43,11 @@ Note: If you leave the dot off and just type django-admin startproject my_projec
 When the project is created, you should see the directory structure similar to the following:
 manage.py
 my_project/
-  init__.py
-  settings.py
-  urls.py
-  asgi.py
-  wsgi.py
+init\_\_.py
+settings.py
+urls.py
+asgi.py
+wsgi.py
 You'll learn more about these files in future lessons, but for now key files to note are: manage.py, settings.py, and urls.py.
 You can see that the settings.py file is in the my_project directory. There are six apps listed in INSTALLED_APPS; this is the default for any new project.
 Creating an app:
@@ -74,33 +74,32 @@ views.py: this file contains the view code for our app. You’ve already created
 
 Urls:
 When you add a path like this to the urls.py file, we are telling Django that when the user inputs this specific URL, it should run the index function within the views.py linked to this path, e.g.
-path('hello/',  index_views.index, name='index'),
+path('hello/', index_views.index, name='index'),
 
 Example of views function:
 def index(request):
 
-   if request.method == "GET":
-       return HttpResponse("This was a GET request")
-   elif request.method == "POST":
-       return HttpResponse("This was a POST request")
+if request.method == "GET":
+return HttpResponse("This was a GET request")
+elif request.method == "POST":
+return HttpResponse("This was a POST request")
 
 Deploy project:
 Click on the Settings tab and reveal the config vars. Add a key of DISABLE_COLLECTSTATIC and a value of 1 and click Add.
 In the terminal:
-pip3 install gunicorn~=20.1 
+pip3 install gunicorn~=20.1
 Add gunicorn==20.1.0 to the requirements.txt file with:
 pip3 freeze --local > requirements.txt
 Create a file named Procfile at the root directory of the project (same directory as requirements.txt).
 . In the Procfile, declare this is a web process followed by the command to execute your Django project.
 web: gunicorn my_project.wsgi
 Open the my_project/settings.py file and replace DEBUG=True with DEBUG=False.
- Also, in settings.py we need to append the Heroku hostname to the ALLOWED_HOSTS list, in addition to the local host we added in the last lesson.
+Also, in settings.py we need to append the Heroku hostname to the ALLOWED_HOSTS list, in addition to the local host we added in the last lesson.
 
 ,'.herokuapp.com'
 
 You can now git add the files you have modified, git commit them and push them to GitHub.
 resourres - dynos
-
 
 Settings.py
 ALLOWED_HOSTS: Determines which host or server names the project can run on.
@@ -109,9 +108,11 @@ INSTALLED_APPS: Provides a list of applications that are enabled for this Django
 DEBUG: Allows for the extended, yellow error messages to be displayed.
 Brief comments are given above DEBUG, SECRET_KEY and INSTALLED_APPS. There are warnings that SECRET_KEY should be kept secret and that DEBUG should be switched off in production. INSTALLED_APPS has the comment of "Application definition".
 
-While developing our application, we should leave DEBUG set to True. 
-When your project is deployed and live, however, DEBUG should always be set to False. 
+While developing our application, we should leave DEBUG set to True.
+When your project is deployed and live, however, DEBUG should always be set to False.
 
 requirements.txt
 pip3 install whitenoise~=6.5.0
 pip3 freeze --local > requirements.txt
+Always recreate requirements.txt every time you install a new package
+Deploy early and regularly
